@@ -186,7 +186,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("id/idCode/{idCode}/{id}")
+    @PostMapping("/id/idCode/{idCode}/{id}")
     public Map<String, Object> idCodeByEmail(@PathVariable String idCode,
                                              @PathVariable String id) {
         String email = userService.getEmail(id);

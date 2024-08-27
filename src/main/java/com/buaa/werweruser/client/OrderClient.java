@@ -16,7 +16,7 @@ public interface OrderClient {
                                            @RequestParam("status") String status,
                                            @RequestParam("type") String type);
 
-    @GetMapping("/orders/{uid}")
+    @GetMapping("/orders/byUid/{uid}")
     List<OrderDTO> getOrderByUid(@PathVariable("uid") String uid,
                                  @RequestParam("type") String type);
 
@@ -24,7 +24,7 @@ public interface OrderClient {
     OrderDTO getOrderByOidAndUid(@PathVariable("oid") String oid,
                                  @PathVariable("uid") String uid);
 
-    @GetMapping("/orders/{oid}")
+    @GetMapping("/orders/byOid/{oid}")
     OrderDTO getOrder(@PathVariable("oid") String oid);
 
     @PostMapping("/orders/addOrder")
@@ -50,10 +50,10 @@ public interface OrderClient {
     @GetMapping("/orders/trains")
     List<OrderDTO> getAllTrain();
 
-    @GetMapping("/orders/{orderId}/message-sent")
+    @GetMapping("/orders/{orderId}/get-message-sent")
     Boolean getMessageSend(@PathVariable("orderId") String orderId);
 
-    @PostMapping("/orders/{orderId}/message-sent")
+    @PostMapping("/orders/{orderId}/set-message-sent")
     void setMessageHaveSend(@PathVariable("orderId") String orderId);
 
     @PostMapping("/orders/{oid}/finish")

@@ -34,7 +34,7 @@ public class OrderController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/orders/{uid}")
+    @GetMapping("/orders/byUid/{uid}")
     public List<OrderDTO> getOrderByUid(@PathVariable String uid, @RequestParam String type) {
         Order.OrderType orderType = Order.OrderType.valueOf(type);
         List<Order> orders = orderService.getOrderByUid(uid, orderType);
@@ -49,7 +49,7 @@ public class OrderController {
         return orderConverter.toDTO(order);
     }
 
-    @GetMapping("/orders/{oid}")
+    @GetMapping("/orders/byOid/{oid}")
     public OrderDTO getOrder(@PathVariable String oid) {
         Order order = orderService.getOrder(oid);
         return orderConverter.toDTO(order);
@@ -61,7 +61,7 @@ public class OrderController {
         orderService.addOrder(order);
     }
 
-    @PostMapping("/cancel")
+    @PostMapping("/orders/cancel")
     public void cancelOrder(@RequestBody OrderDTO orderDTO) {
         Order order = orderConverter.toEntity(orderDTO);
         orderService.cancelOrder(order);
@@ -102,12 +102,12 @@ public class OrderController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/orders/{orderId}/message-sent")
+    @GetMapping("/orders/{orderId}/get-message-sent")
     public Boolean getMessageSend(@PathVariable String orderId) {
         return orderService.getMessageSend(orderId);
     }
 
-    @PostMapping("/orders/{orderId}/message-sent")
+    @PostMapping("/orders/{orderId}/set-message-sent")
     public void setMessageHaveSend(@PathVariable String orderId) {
         orderService.setMessageHaveSend(orderId);
     }
