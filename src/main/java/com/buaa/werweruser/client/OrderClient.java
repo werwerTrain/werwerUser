@@ -20,7 +20,7 @@ public interface OrderClient {
     List<OrderDTO> getOrderByUid(@PathVariable("uid") String uid,
                                  @RequestParam("type") String type);
 
-    @GetMapping("/orders/{oid}/{uid}")
+    @GetMapping("/orders/byOidAndUid/{oid}/{uid}")
     OrderDTO getOrderByOidAndUid(@PathVariable("oid") String oid,
                                  @PathVariable("uid") String uid);
 

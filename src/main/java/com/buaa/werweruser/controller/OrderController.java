@@ -43,7 +43,7 @@ public class OrderController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/orders/{oid}/{uid}")
+    @GetMapping("/orders/byOidAndUid/{oid}/{uid}")
     public OrderDTO getOrderByOidAndUid(@PathVariable String oid, @PathVariable String uid) {
         Order order = orderService.getOrderByOidAndUid(oid, uid);
         return orderConverter.toDTO(order);
