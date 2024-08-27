@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wwUser-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wwUser
+  template:
+    metadata:
+      labels:
+        app: wwUser
+    spec:
+      containers:
+      - name: wwUser
+        image: qiuer0121/wwUser:latest
+        ports:
+        - containerPort: 8080
+
