@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: werweruser-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: werweruser
+  template:
+    metadata:
+      labels:
+        app: werweruser
+    spec:
+      containers:
+      - name: werweruser
+        image: luluplum/werweruser:latest
+        ports:
+        - containerPort: 9095
