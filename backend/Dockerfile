@@ -10,6 +10,7 @@ COPY src/ ./src/
 
 # 构建项目
 RUN mvn clean package
+
 # 运行应用
 CMD ["java", "-jar", "target/werwerUser-0.0.1-SNAPSHOT.jar"]
 
