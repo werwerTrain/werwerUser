@@ -1,6 +1,7 @@
 package com.buaa.werweruser.controller;
 
 //import com.buaa.werweruser.client.TrainClient;
+import com.buaa.werweruser.client.TrainClient;
 import com.buaa.werweruser.dto.PassengerDTO;
 import com.buaa.werweruser.service.IEmailService;
 import com.buaa.werweruser.entity.User;
@@ -29,8 +30,8 @@ public class UserController {
     @Autowired
     private RestTemplate restTemplate;
 
-//    @Autowired
-//    private TrainClient trainClient;
+    @Autowired
+    private TrainClient trainClient;
 
     @Autowired
     private IEmailService emailService;
@@ -76,7 +77,12 @@ public class UserController {
                 String identification = id;
                 String userId = id;
                 String phone = email;
+                Map<String, String> requestMap = new HashMap<>();
+                requestMap.put("name",name);
+                requestMap.put("identification",identification);
+                requestMap.put("phone",phone);
                 // train-service的passenger的add接口
+                PassengerDTO passengerDTO = trainClient.insertPassenger(userId, requestMap);
 //                PassengerDTO response = trainClient.insertPassenger(id);
 //                ResponseEntity<PassengerDTO> response = restTemplate.exchange(
 //                        "http://train-service/insertPassengers/{id}",
