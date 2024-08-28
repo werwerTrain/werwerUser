@@ -15,7 +15,7 @@ import java.util.Map;
 public interface TrainClient {
 
     @PostMapping("/insertPassengers/{id}")
-    PassengerDTO insertPassenger(@PathVariable("id") String id, @RequestBody Map<String,String> requestMap);
+    public Integer insertPassenger(@PathVariable("id") String id, @RequestBody Map<String,String> requestMap);
 
     @GetMapping("/getTrainIdAndDate/{orderId}")
     public List<Map<String, Object>> getTrainIdAndDate(@PathVariable String orderId);

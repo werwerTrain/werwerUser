@@ -82,7 +82,7 @@ public class UserController {
                 requestMap.put("identification",identification);
                 requestMap.put("phone",phone);
                 // train-service的passenger的add接口
-                PassengerDTO passengerDTO = trainClient.insertPassenger(userId, requestMap);
+                trainClient.insertPassenger(userId, requestMap);
 //                PassengerDTO response = trainClient.insertPassenger(id);
 //                ResponseEntity<PassengerDTO> response = restTemplate.exchange(
 //                        "http://train-service/insertPassengers/{id}",
