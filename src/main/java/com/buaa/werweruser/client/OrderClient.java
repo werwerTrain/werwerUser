@@ -1,5 +1,6 @@
 package com.buaa.werweruser.client;
 
+import com.buaa.werweruser.client.fallback.OrderClientFallback;
 import com.buaa.werweruser.dto.OrderDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@FeignClient(name = "user-service", contextId = "orderClient", path = "/api/users")
+@FeignClient(name = "user-service", contextId = "orderClient", path = "/api/users", fallback = OrderClientFallback.class)
 public interface OrderClient {
 
     @GetMapping("/orders/{uid}/status")

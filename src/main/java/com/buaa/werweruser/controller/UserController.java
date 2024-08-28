@@ -1,6 +1,7 @@
 package com.buaa.werweruser.controller;
 
 //import com.buaa.werweruser.client.TrainClient;
+
 import com.buaa.werweruser.client.TrainClient;
 import com.buaa.werweruser.dto.PassengerDTO;
 import com.buaa.werweruser.service.IEmailService;
@@ -78,9 +79,9 @@ public class UserController {
                 String userId = id;
                 String phone = email;
                 Map<String, String> requestMap = new HashMap<>();
-                requestMap.put("name",name);
-                requestMap.put("identification",identification);
-                requestMap.put("phone",phone);
+                requestMap.put("name", name);
+                requestMap.put("identification", identification);
+                requestMap.put("phone", phone);
                 // train-service的passenger的add接口
                 trainClient.insertPassenger(userId, requestMap);
 //                PassengerDTO response = trainClient.insertPassenger(id);
@@ -214,7 +215,7 @@ public class UserController {
     }
 
     @GetMapping("/getEmail/{userId}")
-    public String getEmail(@PathVariable("userId") String userId){
+    public String getEmail(@PathVariable("userId") String userId) {
         return userService.getEmail(userId);
     }
 }

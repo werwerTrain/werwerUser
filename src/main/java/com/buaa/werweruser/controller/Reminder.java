@@ -63,8 +63,8 @@ public class Reminder {
 
                     //LocalDateTime startTime = (LocalDateTime) trainMap.get("startTime");
                     // String formattedStartTime = startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                    LocalDateTime startTime =(LocalDateTime) trainClient.getStartTime(trainId, trainDate).get("startTime");
-                    LocalDateTime arrivalTime =(LocalDateTime) trainClient.getStartTime(trainId, trainDate).get("arrivalTime");
+                    LocalDateTime startTime = (LocalDateTime) trainClient.getStartTime(trainId, trainDate).get("startTime");
+                    LocalDateTime arrivalTime = (LocalDateTime) trainClient.getStartTime(trainId, trainDate).get("arrivalTime");
 
 
                     String formattedStartTime = startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -92,7 +92,7 @@ public class Reminder {
                         if (finish.isNegative()) {
                             orderService.finishOrder(order.getOid());
                             // 完成该trainOrder对应的foodOrder
-                            foodClient.getTrainRelatedFoodOrders(trainId, trainDate, userId).forEach(e-> {
+                            foodClient.getTrainRelatedFoodOrders(trainId, trainDate, userId).forEach(e -> {
                                 orderService.finishOrder(orderService.getOrder(e.getOid()).getOid());
                                 //orderService.cancelOrder(e);
                             });
@@ -106,7 +106,7 @@ public class Reminder {
 //                        System.out.println("车次已取消");
                         orderService.cancelOrder(order);
                         // 取消该trainOrder对应的foodOrder
-                        foodClient.getTrainRelatedFoodOrders(trainId, trainDate, userId).forEach(e-> {
+                        foodClient.getTrainRelatedFoodOrders(trainId, trainDate, userId).forEach(e -> {
                             orderService.cancelOrder(orderConverter.toEntity(e));
                         });
                         // 距发车时间小于3h且未发送过消息
@@ -129,7 +129,7 @@ public class Reminder {
                     System.out.println("获取酒店订单详情失败");
                 } else {
                     String finishTime = hotelOrderDetail.get(0).get("checkoutTime").toString();
-                    LocalDate finishDate =  LocalDate.parse(finishTime, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    LocalDate finishDate = LocalDate.parse(finishTime, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     //System.out.println(now);
                     LocalDateTime finish = finishDate.atStartOfDay(); // 将日期转换为当天的开始时间
                     Duration duration = Duration.between(now, finish);

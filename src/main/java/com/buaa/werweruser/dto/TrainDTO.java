@@ -17,6 +17,7 @@ public class TrainDTO {
     private String arrivalTime;
 
     private Time duration;
+
     // 0高铁 1火车
     public enum TrainType {
         Gaotie, Huoche
@@ -62,7 +63,6 @@ public class TrainDTO {
     private double hardSleeperPrice;
     private int hardSeatSurplus;
     private double hardSeatPrice;
-
 
 
     public int getHardSeatSurplus() {

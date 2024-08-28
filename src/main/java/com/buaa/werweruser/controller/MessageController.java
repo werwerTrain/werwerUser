@@ -21,22 +21,22 @@ public class MessageController {
     public Map<String, Object> getMessage(@PathVariable String userID) {
         List<Map<String, Object>> messageMap = messageService.getMessage(userID);
         List<Object> result = new ArrayList<>();
-        for(Map<String, Object> message:messageMap){
-            result.add(new HashMap<>(){{
-                put("orderType",message.get("orderType"));
-                put("orderId",message.get("orderId"));
-                put("haveRead",message.get("haveRead"));
-                put("title",message.get("title"));
+        for (Map<String, Object> message : messageMap) {
+            result.add(new HashMap<>() {{
+                put("orderType", message.get("orderType"));
+                put("orderId", message.get("orderId"));
+                put("haveRead", message.get("haveRead"));
+                put("title", message.get("title"));
                 LocalDateTime messageTime = (LocalDateTime) message.get("messageTime");
                 String formattedMessageTime = messageTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                put("messageTime",formattedMessageTime);
-                put("content",message.get("content"));
-                put("mid",message.get("mid"));
+                put("messageTime", formattedMessageTime);
+                put("content", message.get("content"));
+                put("mid", message.get("mid"));
             }});
         }
 
         return new HashMap<>() {{
-            put("result",result);
+            put("result", result);
         }};
     }
 
@@ -47,9 +47,9 @@ public class MessageController {
     }
 
     @PostMapping("/message/setAllRead/{userId}")
-    public void setAllRead(@PathVariable String userId){
+    public void setAllRead(@PathVariable String userId) {
         List<Map<String, Object>> messageMap = messageService.getMessage(userId);
-        for(Map<String, Object> message : messageMap){
+        for (Map<String, Object> message : messageMap) {
             messageService.setHaveread(message.get("mid").toString());
         }
     }
@@ -71,7 +71,7 @@ public class MessageController {
         String messageTime = messageMap.get("messageTime").toString();
         String content = messageMap.get("content").toString();
         String orderType = messageMap.get("orderType").toString();
-        messageService.addMessage(userId, mid, orderId, title, messageTime, content, false,orderType);
+        messageService.addMessage(userId, mid, orderId, title, messageTime, content, false, orderType);
     }
 }
 
