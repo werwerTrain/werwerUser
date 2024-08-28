@@ -23,5 +23,5 @@ public interface TrainClient {
     public Map<String,Object> getStartTime(@PathVariable String trainId, @PathVariable String trainDate);
 
     @GetMapping("/getTrainState/{trainId}/{trainDate}")
-    public Boolean getTrainState(String trainId,String trainDate);
+    public Boolean getTrainState(@PathVariable String trainId,@PathVariable String trainDate);
 }
