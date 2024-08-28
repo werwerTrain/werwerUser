@@ -16,5 +16,5 @@ spec:
       - name: wwUser
         image: qiuer0121/wwUser:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 9090
 
