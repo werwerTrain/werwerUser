@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: wwuser
-        image: qiuer0121/wwuser:latest
+        image: bxr0820/wwuser:latest
         ports:
         - containerPort: 9095
 
