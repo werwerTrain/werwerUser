@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wwUser-deployment
+  name: wwuser-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: wwUser
+      app: wwuser
   strategy:
     rollingUpdate: 
       maxSurge: 50% 
@@ -15,18 +15,11 @@ spec:
   template:
     metadata:
       labels:
-        app: wwUser
+        app: wwuser
     spec:
       containers:
-      - name: wwUser
-        image: qiuer0121/wwUser:latest
+      - name: wwuser
+        image: qiuer0121/wwuser:latest
         ports:
         - containerPort: 9095
-        resources: 
-          limits: 
-            cpu: 800m 
-            memory: 5Gi 
-          requests:  
-            cpu: 50m
-            memory: 100Mi
 
