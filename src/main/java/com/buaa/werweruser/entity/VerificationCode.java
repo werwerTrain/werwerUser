@@ -59,6 +59,8 @@ public class VerificationCode {
         this.generatedAt = LocalDateTime.now();
         this.expiresAt = generatedAt.plusMinutes(2);
     }
+
+
 }
 
 
