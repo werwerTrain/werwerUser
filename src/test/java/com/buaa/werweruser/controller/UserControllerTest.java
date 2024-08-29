@@ -52,7 +52,7 @@ class UserControllerTest {
         Mockito.when(userService.registerUser(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString()))
                 .thenReturn(new User("120105200001011234", "Test User", "Password123", "test@example.com"));
 
-        Mockito.when(trainClient.insertPassenger(Mockito.anyString(), Mockito.anyMap()))
+        Mockito.when(trainClient.insertPassenger(Mockito.anyString(), Mockito.anyString(),Mockito.anyString(),Mockito.anyString()))
                 .thenReturn(1);
 
         // Prepare request payload

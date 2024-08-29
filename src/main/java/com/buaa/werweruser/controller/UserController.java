@@ -78,12 +78,12 @@ public class UserController {
                 String identification = id;
                 String userId = id;
                 String phone = email;
-                Map<String, String> requestMap = new HashMap<>();
-                requestMap.put("name", name);
-                requestMap.put("identification", identification);
-                requestMap.put("phone", phone);
+//                Map<String, String> requestMap = new HashMap<>();
+//                requestMap.put("name", name);
+//                requestMap.put("identification", identification);
+//                requestMap.put("phone", phone);
                 // train-service的passenger的add接口
-                trainClient.insertPassenger(userId, requestMap);
+                trainClient.insertPassenger(userId, name,identification,phone);
 //                PassengerDTO response = trainClient.insertPassenger(id);
 //                ResponseEntity<PassengerDTO> response = restTemplate.exchange(
 //                        "http://train-service/insertPassengers/{id}",
