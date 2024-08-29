@@ -1,6 +1,5 @@
 package com.buaa.werweruser.service.Impl;
 
-
 import com.buaa.werweruser.service.IMessageService;
 import com.buaa.werweruser.mapper.IMessageMapper;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -19,12 +18,14 @@ public class MessageServiceImpl implements IMessageService {
     private IMessageMapper messageMapper;
 
     @Override
-    public void addMessage(String userId, String mid, String orderId, String title, String messageTime, String content, Boolean haveRead, String orderType) {
+    public void addMessage(String userId, String mid, String orderId, String title, String messageTime, String content,
+            Boolean haveRead, String orderType) {
         messageMapper.addMessage(userId, mid, orderId, title, messageTime, content, haveRead, orderType);
     }
 
     @Override
-    @CircuitBreaker(name = "getMessageCircuitBreaker", fallbackMethod = "getMessageFallback")
+    // @CircuitBreaker(name = "getMessageCircuitBreaker", fallbackMethod =
+    // "getMessageFallback")
     public List<Map<String, Object>> getMessage(String userId) {
         return messageMapper.getMessage(userId);
     }
@@ -34,12 +35,12 @@ public class MessageServiceImpl implements IMessageService {
         messageMapper.setHaveread(mid);
     }
 
-    public List<Map<String, Object>> getMessageFallback(String userId, Throwable t) {
-        List<Map<String, Object>> fallbackList = new ArrayList<>();
-        Map<String, Object> fallbackMap = new HashMap<>();
-        fallbackMap.put("result", null);
-        fallbackList.add(fallbackMap);
-        return fallbackList;
-    }
+    // public List<Map<String, Object>> getMessageFallback(String userId, Throwable
+    // t) {
+    // List<Map<String, Object>> fallbackList = new ArrayList<>();
+    // Map<String, Object> fallbackMap = new HashMap<>();
+    // fallbackMap.put("result", null);
+    // fallbackList.add(fallbackMap);
+    // return fallbackList;
+    // }
 }
-
