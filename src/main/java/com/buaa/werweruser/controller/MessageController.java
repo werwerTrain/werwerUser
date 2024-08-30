@@ -21,7 +21,7 @@ public class MessageController {
     private IMessageService messageService;
 
     public Map<String, Object> getMessageFallback(String userID, Throwable t) {
-        System.out.println("111");
+        System.out.println("调用Fallback函数, 服务降级成功");
         List<Map<String, Object>> fallbackList = new ArrayList<>();
 
         Map<String, Object> fallbackMap = new HashMap<>();
@@ -45,6 +45,7 @@ public class MessageController {
     @GetMapping("/message/getAll/{userID}")
     @RateLimiter(name = "messageService", fallbackMethod = "getMessageFallback")
     public Map<String, Object> getMessage(@PathVariable("userID") String userID) {
+        System.out.println("服务正常");
         List<Map<String, Object>> messageMap = messageService.getMessage(userID);
         List<Object> result = new ArrayList<>();
         for (Map<String, Object> message : messageMap) {
@@ -60,7 +61,7 @@ public class MessageController {
                 put("mid", message.get("mid"));
             }});
         }
-        System.out.println(result.size());
+        // System.out.println(result.size());
         return new HashMap<>() {{
             put("result", result);
         }};
@@ -82,6 +83,7 @@ public class MessageController {
     }
 
     @PostMapping("/addMessage")
+    @CircuitBreaker(name="addMessage",fallbackMethod = "addMessageFallback")
     public void addMessage(@RequestBody Map<String, Object> messageMap) {
         String userId = messageMap.get("userId").toString();
         String mid = Message.generateMessageId();
@@ -91,6 +93,10 @@ public class MessageController {
         String content = messageMap.get("content").toString();
         String orderType = messageMap.get("orderType").toString();
         messageService.addMessage(userId, mid, orderId, title, messageTime, content, false, orderType);
+    }
+
+    public void addMessageFallback(@RequestBody Map<String, Object> messageMap, Throwable t){
+        System.out.println("addMessage request failed, fallback method executed.");
     }
 }
 

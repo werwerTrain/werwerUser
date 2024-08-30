@@ -10,6 +10,7 @@ import com.buaa.werweruser.entity.VerificationCode;
 //import com.buaa.werwertrip.service.IPassengerService;
 import com.buaa.werweruser.service.IUserService;
 import com.buaa.werweruser.service.IVerificationCodeService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -215,8 +216,15 @@ public class UserController {
     }
 
     @GetMapping("/getEmail/{userId}")
+    @CircuitBreaker(name="getEmail",fallbackMethod = "getEmailFallback")
     public String getEmail(@PathVariable("userId") String userId) {
         return userService.getEmail(userId);
     }
+    public String getEmailFallback(String userId,Throwable t) {
+        // Provide fallback behavior here
+        System.out.println("get email request failed, fallback method executed");
+        return "fallback@example.com"; // Example fallback value
+    }
+
 }
 
