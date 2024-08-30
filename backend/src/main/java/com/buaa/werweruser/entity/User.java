@@ -8,22 +8,22 @@ import java.util.List;
 public class User {
     // 身份证号
     private String id;
+
     // 姓名
     private String name;
     private String password;
     private String email;
 
-    private Integer isLogin;
-//    private List<Order> orders;
-//    // 乘车人
-//    private List<Passenger> passengers;
-
-    public Integer getIsLogin() {
-        return isLogin;
+    // 无参构造方法
+    public User() {
     }
 
-    public void setIsLogin(Integer isLogin) {
-        this.isLogin = isLogin;
+    // 带参构造方法
+    public User(String id, String name, String password, String email) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
     }
 
     public String getEmail() {
@@ -59,6 +59,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+//    public User(String id, String name, String password, String email) {
+//        this.id = id;
+//        this.name = name;
+//        this.password = password;
+//        this.email = email;
+//    }
 
 //    public List<Order> getOrders() {
 //        return orders;

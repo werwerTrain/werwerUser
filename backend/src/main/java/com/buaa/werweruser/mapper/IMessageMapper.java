@@ -24,5 +24,4 @@ public interface IMessageMapper extends BaseMapper<Message> {
     void setHaveread(String mid);
 
 
-
 }

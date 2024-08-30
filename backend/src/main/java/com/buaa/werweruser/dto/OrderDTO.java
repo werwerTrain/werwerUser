@@ -2,7 +2,9 @@ package com.buaa.werweruser.dto;
 
 import com.buaa.werweruser.entity.Order;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class OrderDTO {
     private String oid;
@@ -21,6 +23,19 @@ public class OrderDTO {
         this.total = total;
         this.orderStatus = orderStatus;
         this.orderType = orderType;
+    }
+
+    public static String generateOrderId() {
+        // 获取当前时间戳
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        String timestamp = sdf.format(new Date());
+
+        // 生成一个五位数的随机数
+        Random random = new Random();
+        int randomNum = 10000 + random.nextInt(90000);
+
+        // 组合时间戳和随机数生成订单ID
+        return timestamp + randomNum;
     }
 
     // Getters and Setters

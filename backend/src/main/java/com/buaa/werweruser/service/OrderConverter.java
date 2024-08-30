@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class OrderConverter {
 
     public OrderDTO toDTO(Order order) {
-        OrderDTO dto = new OrderDTO(order.getOid(), order.getUid(), order.getBillTime(), order.getTotal(), order.getOrderStatus().name(),order.getOrderType().name());
+        OrderDTO dto = new OrderDTO(order.getOid(), order.getUid(), order.getBillTime(), order.getTotal(), order.getOrderStatus().name(), order.getOrderType().name());
         dto.setOid(order.getOid());
         dto.setUid(order.getUid());
         dto.setOrderStatus(order.getOrderStatus().name());
@@ -19,7 +19,7 @@ public class OrderConverter {
     }
 
     public Order toEntity(OrderDTO dto) {
-        Order order = new Order(dto.getOid(),dto.getUid(),dto.getBillTime(),dto.getTotal(),Order.OrderStatus.valueOf(dto.getOrderStatus()),Order.OrderType.valueOf(dto.getOrderType()));
+        Order order = new Order(dto.getOid(), dto.getUid(), dto.getBillTime(), dto.getTotal(), Order.OrderStatus.valueOf(dto.getOrderStatus()), Order.OrderType.valueOf(dto.getOrderType()));
         order.setOid(dto.getOid());
         order.setUid(dto.getUid());
         order.setOrderStatus(Order.OrderStatus.valueOf(dto.getOrderStatus()));

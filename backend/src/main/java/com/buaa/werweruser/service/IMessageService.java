@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 // 消息
 @Component
@@ -14,6 +15,7 @@ public interface IMessageService {
     List<Map<String, Object>> getMessage(String userId);
 
     void setHaveread(String mid);
+
 
 }
 
